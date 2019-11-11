@@ -1,0 +1,495 @@
+{
+  "name": "appointmentBot",
+  "intents": [
+    {
+      "intent": "appointment",
+      "examples": [
+        {
+          "text": "make an appointment"
+        },
+        {
+          "text": "i need to make an appointment"
+        },
+        {
+          "text": "i need to make an appointment for"
+        },
+        {
+          "text": "i need to make an appoint with Dr."
+        },
+        {
+          "text": "appointment"
+        },
+        {
+          "text": "please make an appointment"
+        },
+        {
+          "text": "make an appointment with doctor"
+        }
+      ]
+    },
+    {
+      "intent": "greetings",
+      "examples": [
+        {
+          "text": "What's up?"
+        },
+        {
+          "text": "Hi"
+        },
+        {
+          "text": "Hey"
+        },
+        {
+          "text": "hii"
+        },
+        {
+          "text": "Hello"
+        },
+        {
+          "text": "greetings"
+        },
+        {
+          "text": "Heyya"
+        }
+      ]
+    },
+    {
+      "intent": "bye",
+      "examples": [
+        {
+          "text": "ok bye"
+        },
+        {
+          "text": "c ya"
+        },
+        {
+          "text": "see you"
+        },
+        {
+          "text": "bye"
+        },
+        {
+          "text": "good bye"
+        },
+        {
+          "text": "bye bye"
+        }
+      ]
+    },
+    {
+      "intent": "thankyou",
+      "examples": [
+        {
+          "text": "Thanks"
+        },
+        {
+          "text": "Thank you"
+        },
+        {
+          "text": "Thanks a lot"
+        },
+        {
+          "text": "Thank you very much"
+        }
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "entity": "appointment",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "doctor",
+          "synonyms": [
+            "Doctor",
+            "pharmacist",
+            "doc",
+            "pediatrician",
+            "psychiatrist",
+            "neurologist",
+            "gynecologist",
+            "physician",
+            "psychologist"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "lawyer",
+          "synonyms": [
+            "attorney",
+            "lawyers",
+            "solicitor",
+            "counsel",
+            "barrister",
+            "advocate",
+            "litigator",
+            "prosecutor"
+          ]
+        }
+      ],
+      "fuzzy_match": false
+    },
+    {
+      "entity": "sys-person",
+      "values": [],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "sys-date",
+      "values": [],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "sys-time",
+      "values": [],
+      "fuzzy_match": true
+    }
+  ],
+  "language": "en",
+  "metadata": {
+    "api_version": {
+      "major_version": "v1",
+      "minor_version": "2018-07-10"
+    }
+  },
+  "skill_id": "1aca08e6-918d-40e9-b690-4895720fcfe7",
+  "description": "",
+  "dialog_nodes": [
+    {
+      "type": "event_handler",
+      "output": {
+        "text": {
+          "values": [
+            "Please enter the time you want to make the appointment"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "slot_8_1572927512439",
+      "event_name": "focus",
+      "dialog_node": "handler_4_1572927512443",
+      "previous_sibling": "handler_3_1572927512443"
+    },
+    {
+      "type": "event_handler",
+      "parent": "slot_8_1572927512439",
+      "context": {
+        "Doctime": "@sys-time"
+      },
+      "conditions": "@sys-time",
+      "event_name": "input",
+      "dialog_node": "handler_3_1572927512443"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": {
+          "values": [
+            "Please enter the time you want to book an appointment"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "slot_2_1572928590456",
+      "event_name": "focus",
+      "dialog_node": "handler_1_1572928590459",
+      "previous_sibling": "handler_9_1572928590459"
+    },
+    {
+      "type": "event_handler",
+      "parent": "slot_2_1572928590456",
+      "context": {
+        "lawyertime": "@sys-time"
+      },
+      "conditions": "@sys-time",
+      "event_name": "input",
+      "dialog_node": "handler_9_1572928590459"
+    },
+    {
+      "type": "slot",
+      "parent": "node_10_1572927387565",
+      "variable": "$Doc",
+      "dialog_node": "slot_8_1572927599807",
+      "previous_sibling": "slot_8_1572927512439"
+    },
+    {
+      "type": "slot",
+      "parent": "node_10_1572927387565",
+      "variable": "$Doctime",
+      "dialog_node": "slot_8_1572927512439",
+      "previous_sibling": "slot_3_1572927437555"
+    },
+    {
+      "type": "slot",
+      "parent": "node_10_1572927387565",
+      "variable": "$Docdate",
+      "dialog_node": "slot_3_1572927437555"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": {
+          "values": [
+            "Please enter the date you want to make an appointment"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "slot_3_1572927437555",
+      "event_name": "focus",
+      "dialog_node": "handler_6_1572927437578",
+      "previous_sibling": "handler_1_1572927437578"
+    },
+    {
+      "type": "event_handler",
+      "parent": "slot_3_1572927437555",
+      "context": {
+        "Docdate": "@sys-date"
+      },
+      "conditions": "@sys-date",
+      "event_name": "input",
+      "dialog_node": "handler_1_1572927437578"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": {
+          "values": [
+            "Please enter the date you want to book an appointment"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "slot_10_1572928552120",
+      "event_name": "focus",
+      "dialog_node": "handler_8_1572928552151",
+      "previous_sibling": "handler_9_1572928552150"
+    },
+    {
+      "type": "event_handler",
+      "parent": "slot_10_1572928552120",
+      "context": {
+        "lawyerdate": "@sys-date"
+      },
+      "conditions": "@sys-date",
+      "event_name": "input",
+      "dialog_node": "handler_9_1572928552150"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_7_1572928640506",
+      "event_name": "focus",
+      "dialog_node": "handler_4_1572928640507",
+      "previous_sibling": "handler_3_1572928640507"
+    },
+    {
+      "type": "event_handler",
+      "parent": "slot_7_1572928640506",
+      "context": {
+        "lawyerperson": "@sys-person"
+      },
+      "conditions": "@sys-person",
+      "event_name": "input",
+      "dialog_node": "handler_3_1572928640507"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": {
+          "values": [
+            "Enter the doctor's name"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "slot_8_1572927599807",
+      "event_name": "focus",
+      "dialog_node": "handler_7_1572927599811",
+      "previous_sibling": "handler_10_1572927599811"
+    },
+    {
+      "type": "event_handler",
+      "parent": "slot_8_1572927599807",
+      "context": {
+        "Doc": "@sys-person"
+      },
+      "conditions": "@sys-person",
+      "event_name": "input",
+      "dialog_node": "handler_10_1572927599811"
+    },
+    {
+      "type": "slot",
+      "parent": "node_9_1572928495170",
+      "variable": "$lawyerperson",
+      "dialog_node": "slot_7_1572928640506",
+      "previous_sibling": "slot_2_1572928590456"
+    },
+    {
+      "type": "slot",
+      "parent": "node_9_1572928495170",
+      "variable": "$lawyertime",
+      "dialog_node": "slot_2_1572928590456",
+      "previous_sibling": "slot_10_1572928552120"
+    },
+    {
+      "type": "slot",
+      "parent": "node_9_1572928495170",
+      "variable": "$lawyerdate",
+      "dialog_node": "slot_10_1572928552120"
+    },
+    {
+      "type": "standard",
+      "title": "greetings",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Hey! Tell me what can I help you with."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#greetings",
+      "dialog_node": "node_8_1572927103977",
+      "previous_sibling": "Welcome"
+    },
+    {
+      "type": "frame",
+      "title": "Appointment lawyer",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "All set! Your appointment with $lawyerperson has been booked on $lawyerdate at $lawyertime!!"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "context": {
+        "destination_bot": "agent"
+      },
+      "conditions": "#appointment && @appointment:lawyer",
+      "dialog_node": "node_9_1572928495170",
+      "previous_sibling": "node_10_1572927387565"
+    },
+    {
+      "type": "standard",
+      "title": "Anything else",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "I didn't understand. You can try rephrasing."
+              },
+              {
+                "text": "Can you reword your statement? I'm not understanding."
+              },
+              {
+                "text": "I didn't get your meaning."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "anything_else",
+      "dialog_node": "Anything else",
+      "previous_sibling": "node_4_1572927241380"
+    },
+    {
+      "type": "frame",
+      "title": "Appointment doc",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "All set! Your appoint with $Doc is set for $Doctime on $Docdate."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "context": {
+        "destination_bot": "agent"
+      },
+      "conditions": "#appointment && @appointment:doctor",
+      "dialog_node": "node_10_1572927387565",
+      "previous_sibling": "node_8_1572927103977"
+    },
+    {
+      "type": "standard",
+      "title": "Bye",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "See ya! Do come back if you need further help!"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "context": {
+        "destination_bot": "agent"
+      },
+      "conditions": "#bye",
+      "digress_in": "does_not_return",
+      "dialog_node": "node_4_1572927241380",
+      "previous_sibling": "node_9_1572928495170"
+    },
+    {
+      "type": "standard",
+      "title": "Welcome",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Hello. I can help you with making appointments!!"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "welcome",
+      "dialog_node": "Welcome"
+    }
+  ],
+  "workspace_id": "1aca08e6-918d-40e9-b690-4895720fcfe7",
+  "counterexamples": [],
+  "system_settings": {
+    "tooling": {
+      "store_generic_responses": true
+    },
+    "disambiguation": {
+      "prompt": "Did you mean:",
+      "none_of_the_above_prompt": "None of the above"
+    },
+    "human_agent_assist": {
+      "prompt": "Did you mean:"
+    },
+    "spelling_auto_correct": true
+  },
+  "learning_opt_out": false,
+  "status": "Available"
+}
